@@ -1168,7 +1168,7 @@ requires-dist = [
     { name = "python-dotenv", specifier = ">=1.0" },
     { name = "python-multipart", specifier = ">=0.0.17" },
     { name = "typer", extras = ["all"], specifier = ">=0.15" },
-    { name = "uvicorn", extras = ["standard"], specifier = ">=0.35" },
+    { name = "uvicorn", extras = ["standard"], specifier = ">=0.46.0" },
 ]
 
 [package.metadata.requires-dev]
