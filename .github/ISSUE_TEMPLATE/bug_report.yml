@@ -1,0 +1,67 @@
+name: Bug report
+description: Something doesn't work the way you expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report. Please fill in as much as you can — vague reports take longer to fix.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, what did you see instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Numbered list of steps to reproduce on a clean checkout.
+      placeholder: |
+        1. `make install`
+        2. `make dev`
+        3. Click on …
+        4. See error …
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - backend (FastAPI / LangGraph / Gemini)
+        - frontend (Vue / Vite)
+        - docker / deployment
+        - docs
+        - unsure
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Commit SHA or version
+      placeholder: "e.g. main@abc1234 or v0.2.0"
+
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      placeholder: |
+        - OS: macOS 15.x / Ubuntu 24.04 / ...
+        - Python: 3.12
+        - Node: 20
+        - uv: 0.5.x
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / screenshots
+      description: Paste relevant backend logs or browser console errors. Use triple backticks for fenced blocks.
+      render: shell

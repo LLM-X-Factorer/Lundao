@@ -1,0 +1,44 @@
+# === OS ===
+.DS_Store
+Thumbs.db
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# === Secrets — never commit ===
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# === Logs ===
+*.log
+logs/
+
+# === Claude Code workspace ===
+.claude/
+.claude_local/
+
+# === Docker compose bind mounts ===
+data/
+
+# === Playwright temp ===
+.playwright-mcp/
+
+# === Temp ===
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# Subprojects keep their own .gitignore for language-specific rules
+# (see backend/.gitignore and frontend/.gitignore)

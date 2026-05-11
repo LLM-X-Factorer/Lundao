@@ -1,0 +1,70 @@
+# Lundao — one-command local deployment.
+#
+#   docker compose up --build
+#
+# Then open http://localhost:8080 (frontend) and http://localhost:8000/docs (backend).
+# Configure backend/.env (GOOGLE_API_KEY etc.) before running.
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: lundao-backend:latest
+    container_name: lundao-backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    environment:
+      # Override paths so persistent data lives in the bind-mounted volumes below.
+      DATABASE_PATH: /data/lundao.db
+      OUTPUT_DIR: /data/outputs
+      UPLOADS_DIR: /data/uploads
+      LANGGRAPH_CHECKPOINT_DIR: /data/checkpoints
+      IMAGE_SERVER_HOST: backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/data
+    networks:
+      - lundao
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Browser-side calls. Nginx in the container reverse-proxies /api/* → backend:8000
+        # so a relative base URL just works regardless of the user's host name.
+        VITE_API_BASE_URL: /api
+        VITE_USE_MOCK_DATA: "false"
+        VITE_WATERMARK_ENABLED: "true"
+        VITE_WATERMARK_TEXT: 论导 Lundao
+        VITE_WATERMARK_OPACITY: "0.08"
+    image: lundao-frontend:latest
+    container_name: lundao-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    networks:
+      - lundao
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+networks:
+  lundao:
+    name: lundao-net
+    driver: bridge

@@ -1,0 +1,44 @@
+name: Feature request
+description: Suggest something we should build, or change
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before opening, please check `docs/PRODUCT.md` — some kinds of feature
+        (user accounts, gamification, social features) are out of scope by design.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the user pain or workflow gap, not the implementation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should happen? Sketches, mocks, API ideas all welcome.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches you've ruled out and why.
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Where would this live?
+      options:
+        - backend
+        - frontend
+        - docker / deployment
+        - docs
+        - cross-cutting
+    validations:
+      required: true

@@ -1,0 +1,40 @@
+# Keep the build context small — Docker doesn't need any of this.
+
+# Local venv / caches
+.venv
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.coverage
+htmlcov
+
+# Local runtime data
+lundao.db
+lundao.db-*
+outputs/
+uploads/
+checkpoints/
+logs/
+
+# Local config / secrets
+.env
+.env.local
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Docs not needed in the image
+*.md
+ref/
+docs/
+examples/
+tests/
+
+# Git
+.git
+.gitignore
