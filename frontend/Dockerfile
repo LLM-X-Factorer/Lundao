@@ -34,7 +34,7 @@ RUN npm run build
 # ================================
 # Stage 2: Production
 # ================================
-FROM nginx:1.25-alpine
+FROM nginx:1.29-alpine
 
 # Copy custom nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
