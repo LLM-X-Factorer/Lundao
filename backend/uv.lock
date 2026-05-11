@@ -1167,7 +1167,7 @@ requires-dist = [
     { name = "pydantic-settings", specifier = ">=2.7" },
     { name = "python-dotenv", specifier = ">=1.0" },
     { name = "python-multipart", specifier = ">=0.0.17" },
-    { name = "typer", extras = ["all"], specifier = ">=0.15" },
+    { name = "typer", extras = ["all"], specifier = ">=0.25.1" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.46.0" },
 ]
 

@@ -14,7 +14,7 @@ dependencies = [
     # Web frameworks
     "fastapi>=0.118",
     "uvicorn[standard]>=0.46.0",
-    "typer[all]>=0.15",
+    "typer[all]>=0.25.1",
     # Data validation and settings
     "pydantic>=2.10",
     "pydantic-settings>=2.7",
